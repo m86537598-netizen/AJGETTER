@@ -15,16 +15,17 @@ G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:Wait
 G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 
 
--- StarterGui.ScreenGui.Frame
+-- StarterGui.ScreenGui.MainFrame
 G2L["2"] = Instance.new("Frame", G2L["1"]);
 G2L["2"]["BorderSizePixel"] = 0;
 G2L["2"]["BackgroundColor3"] = Color3.fromRGB(50, 50, 50);
 G2L["2"]["Size"] = UDim2.new(0, 320, 0, 523);
 G2L["2"]["Position"] = UDim2.new(0.25122, 0, 0.28788, 0);
 G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2"]["Name"] = [[MainFrame]];
 
 
--- StarterGui.ScreenGui.Frame.TextLabel
+-- StarterGui.ScreenGui.MainFrame.TextLabel
 G2L["3"] = Instance.new("TextLabel", G2L["2"]);
 G2L["3"]["TextWrapped"] = true;
 G2L["3"]["BorderSizePixel"] = 0;
@@ -40,7 +41,7 @@ G2L["3"]["Text"] = [[Customizer AJROBLOX]];
 G2L["3"]["Position"] = UDim2.new(-0, 0, 0, 0);
 
 
--- StarterGui.ScreenGui.Frame.TextLabel
+-- StarterGui.ScreenGui.MainFrame.TextLabel
 G2L["4"] = Instance.new("TextLabel", G2L["2"]);
 G2L["4"]["TextWrapped"] = true;
 G2L["4"]["BorderSizePixel"] = 0;
@@ -56,7 +57,7 @@ G2L["4"]["Text"] = [[Accessories]];
 G2L["4"]["Position"] = UDim2.new(0.13125, 0, 0.14286, 0);
 
 
--- StarterGui.ScreenGui.Frame.ACS
+-- StarterGui.ScreenGui.MainFrame.ACS
 G2L["5"] = Instance.new("ScrollingFrame", G2L["2"]);
 G2L["5"]["Active"] = true;
 G2L["5"]["BorderSizePixel"] = 0;
@@ -69,7 +70,7 @@ G2L["5"]["Position"] = UDim2.new(0.25937, 0, 0.23724, 0);
 G2L["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 
 
--- StarterGui.ScreenGui.Frame.ACS.Template
+-- StarterGui.ScreenGui.MainFrame.ACS.Template
 G2L["6"] = Instance.new("TextButton", G2L["5"]);
 G2L["6"]["TextWrapped"] = true;
 G2L["6"]["BorderSizePixel"] = 0;
@@ -85,12 +86,12 @@ G2L["6"]["Name"] = [[Template]];
 G2L["6"]["Visible"] = false;
 
 
--- StarterGui.ScreenGui.Frame.ACS.UIListLayout
+-- StarterGui.ScreenGui.MainFrame.ACS.UIListLayout
 G2L["7"] = Instance.new("UIListLayout", G2L["5"]);
 G2L["7"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
 
 
--- StarterGui.ScreenGui.Frame.TextLabel
+-- StarterGui.ScreenGui.MainFrame.TextLabel
 G2L["8"] = Instance.new("TextLabel", G2L["2"]);
 G2L["8"]["TextWrapped"] = true;
 G2L["8"]["BorderSizePixel"] = 0;
@@ -106,9 +107,10 @@ G2L["8"]["Text"] = [[Animal]];
 G2L["8"]["Position"] = UDim2.new(0.13125, 0, 0.6257, 0);
 
 
--- StarterGui.ScreenGui.Frame.TextBox
+-- StarterGui.ScreenGui.MainFrame.AnimalInput
 G2L["9"] = Instance.new("TextBox", G2L["2"]);
 G2L["9"]["CursorPosition"] = -1;
+G2L["9"]["Name"] = [[AnimalInput]];
 G2L["9"]["BorderSizePixel"] = 0;
 G2L["9"]["TextWrapped"] = true;
 G2L["9"]["TextSize"] = 14;
@@ -123,9 +125,10 @@ G2L["9"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["9"]["Text"] = [[]];
 
 
--- StarterGui.ScreenGui.Frame.TextBox
+-- StarterGui.ScreenGui.MainFrame.AccInput
 G2L["a"] = Instance.new("TextBox", G2L["2"]);
 G2L["a"]["CursorPosition"] = -1;
+G2L["a"]["Name"] = [[AccInput]];
 G2L["a"]["BorderSizePixel"] = 0;
 G2L["a"]["TextWrapped"] = true;
 G2L["a"]["TextSize"] = 14;
@@ -140,12 +143,12 @@ G2L["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["a"]["Text"] = [[]];
 
 
--- StarterGui.ScreenGui.Frame.Smooth GUI Dragging
+-- StarterGui.ScreenGui.MainFrame.Smooth GUI Dragging
 G2L["b"] = Instance.new("LocalScript", G2L["2"]);
 G2L["b"]["Name"] = [[Smooth GUI Dragging]];
 
 
--- StarterGui.ScreenGui.Frame.calc
+-- StarterGui.ScreenGui.MainFrame.calc
 G2L["c"] = Instance.new("TextButton", G2L["2"]);
 G2L["c"]["TextWrapped"] = true;
 G2L["c"]["BorderSizePixel"] = 0;
@@ -161,7 +164,7 @@ G2L["c"]["Name"] = [[calc]];
 G2L["c"]["Position"] = UDim2.new(0.19062, 0, 0.8566, 0);
 
 
--- StarterGui.ScreenGui.Frame.TextButton
+-- StarterGui.ScreenGui.MainFrame.TextButton
 G2L["d"] = Instance.new("TextButton", G2L["2"]);
 G2L["d"]["BorderSizePixel"] = 0;
 G2L["d"]["TextSize"] = 14;
@@ -174,17 +177,17 @@ G2L["d"]["Text"] = [[X]];
 G2L["d"]["Position"] = UDim2.new(0.90312, 0, 0.94455, 0);
 
 
--- StarterGui.ScreenGui.Frame.TextButton.LocalScript
+-- StarterGui.ScreenGui.MainFrame.TextButton.LocalScript
 G2L["e"] = Instance.new("LocalScript", G2L["d"]);
 
 
 
--- StarterGui.ScreenGui.Frame.CalculateSystem
+-- StarterGui.ScreenGui.MainFrame.CalculateSystem
 G2L["f"] = Instance.new("LocalScript", G2L["2"]);
 G2L["f"]["Name"] = [[CalculateSystem]];
 
 
--- StarterGui.ScreenGui.Frame.Smooth GUI Dragging
+-- StarterGui.ScreenGui.MainFrame.Smooth GUI Dragging
 local function C_b()
 local script = G2L["b"];
 	local UserInputService = game:GetService("UserInputService")
@@ -243,7 +246,7 @@ local script = G2L["b"];
 	
 end;
 task.spawn(C_b);
--- StarterGui.ScreenGui.Frame.TextButton.LocalScript
+-- StarterGui.ScreenGui.MainFrame.TextButton.LocalScript
 local function C_e()
 local script = G2L["e"];
 	script.Parent.MouseButton1Up:Connect(function()
@@ -251,166 +254,70 @@ local script = G2L["e"];
 	end)
 end;
 task.spawn(C_e);
--- StarterGui.ScreenGui.Frame.CalculateSystem
+-- StarterGui.ScreenGui.MainFrame.CalculateSystem
 local function C_f()
 local script = G2L["f"];
-	-- SERVICES
-	local Players = game:GetService("Players")
-	local ReplicatedStorage = game:GetService("ReplicatedStorage")
-	local UserInputService = game:GetService("UserInputService")
+	local mainFrame = script.Parent
+	local accInput = mainFrame:WaitForChild("AccInput")
+	local animalInput = mainFrame:WaitForChild("AnimalInput")
+	local acsList = mainFrame:WaitForChild("ACS")
+	local template = acsList:WaitForChild("Template")
+	local calcBtn = mainFrame:WaitForChild("Calc")
 	
-	script.Parent = Players.LocalPlayer.PlayerScripts
+	local remote = game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Remotes"):WaitForChild("RemoteEvent"):WaitForChild("ApplyCharacterProfile")
 	
-	-- 1. CREATING THE GUI ELEMENTS (Visuals)
-	-- We create the ScreenGui and Frames via script so you don't have to build it manually.
+	local accessoryData = {} -- Table to keep track of current list names
 	
-	local screenGui = Instance.new("ScreenGui")
-	screenGui.Name = "CalculationGui"
-	screenGui.ResetOnSpawn = false
-	screenGui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+	-- Function to handle adding an accessory
+	local function addAccessory()
+		local name = accInput.Text
+		if name == "" then return end
 	
-	local mainFrame = Instance.new("Frame")
-	mainFrame.Name = "MainFrame"
-	mainFrame.Size = UDim2.new(0, 300, 0, 400)
-	mainFrame.Position = UDim2.new(0.5, -150, 0.5, -200)
-	mainFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-	mainFrame.BorderSizePixel = 0
-	mainFrame.Parent = screenGui
+		-- Create UI Element
+		local newBtn = template:Clone()
+		newBtn.Name = name
+		newBtn.Text = name
+		newBtn.Visible = true
+		newBtn.Parent = acsList
 	
-	-- Title
-	local title = Instance.new("TextLabel")
-	title.Text = "Profile Calculator"
-	title.Size = UDim2.new(1, 0, 0, 30)
-	title.BackgroundTransparency = 1
-	title.TextColor3 = Color3.fromRGB(255, 255, 255)
-	title.Font = Enum.Font.GothamBold
-	title.TextSize = 18
-	title.Parent = mainFrame
+		table.insert(accessoryData, name)
+		accInput.Text = "" -- Clear input
 	
-	-- Accessory Input Box
-	local accInput = Instance.new("TextBox")
-	accInput.Name = "AccessoryInput"
-	accInput.PlaceholderText = "Enter Accessory Name (Press Enter)"
-	accInput.Size = UDim2.new(0.9, 0, 0, 40)
-	accInput.Position = UDim2.new(0.05, 0, 0.1, 0)
-	accInput.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-	accInput.TextColor3 = Color3.fromRGB(255, 255, 255)
-	accInput.Parent = mainFrame
-	
-	-- ACS List (Container)
-	local acsList = Instance.new("ScrollingFrame")
-	acsList.Name = "ACS"
-	acsList.Size = UDim2.new(0.9, 0, 0.4, 0)
-	acsList.Position = UDim2.new(0.05, 0, 0.22, 0)
-	acsList.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-	acsList.CanvasSize = UDim2.new(0, 0, 0, 0) -- Auto resize later
-	acsList.AutomaticCanvasSize = Enum.AutomaticSize.Y
-	acsList.Parent = mainFrame
-	
-	local listLayout = Instance.new("UIListLayout")
-	listLayout.Parent = acsList
-	listLayout.SortOrder = Enum.SortOrder.LayoutOrder
-	listLayout.Padding = UDim.new(0, 5)
-	
-	-- The Template Button (Hidden)
-	local template = Instance.new("TextButton")
-	template.Name = "Template"
-	template.Size = UDim2.new(1, 0, 0, 30)
-	template.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-	template.TextColor3 = Color3.fromRGB(255, 255, 255)
-	template.Visible = false -- Hidden by default
-	template.Parent = acsList
-	
-	-- Animal Input Box
-	local animalInput = Instance.new("TextBox")
-	animalInput.Name = "AnimalInput"
-	animalInput.PlaceholderText = "Enter Animal Type (Press Enter)"
-	animalInput.Size = UDim2.new(0.9, 0, 0, 40)
-	animalInput.Position = UDim2.new(0.05, 0, 0.65, 0)
-	animalInput.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-	animalInput.TextColor3 = Color3.fromRGB(255, 255, 255)
-	animalInput.Parent = mainFrame
-	
-	-- The Green Calc Button
-	local calcBtn = Instance.new("TextButton")
-	calcBtn.Name = "calc"
-	calcBtn.Text = "CALCULATE"
-	calcBtn.Size = UDim2.new(0.9, 0, 0, 50)
-	calcBtn.Position = UDim2.new(0.05, 0, 0.8, 0)
-	calcBtn.BackgroundColor3 = Color3.fromRGB(46, 204, 113) -- Green
-	calcBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-	calcBtn.Font = Enum.Font.GothamBold
-	calcBtn.TextSize = 20
-	calcBtn.Parent = mainFrame
-	
-	-- VARIABLES TO STORE DATA
-	local savedAnimalType = "Animal" -- Default
-	
-	-- 2. FUNCTIONALITY
-	
-	-- Function to handle double clicking to delete
-	local function setupDeleteButton(btn)
-		local lastClick = 0
-	
-		btn.MouseButton1Click:Connect(function()
-			local currentClick = tick()
-			-- If clicked twice within 0.5 seconds
-			if currentClick - lastClick < 0.5 then
-				btn:Destroy()
+		-- Double Click Logic
+		local clicks = 0
+		newBtn.MouseButton1Click:Connect(function()
+			clicks += 1
+			if clicks >= 2 then
+				-- Remove from data table
+				for i, v in ipairs(accessoryData) do
+					if v == name then
+						table.remove(accessoryData, i)
+						break
+					end
+				end
+				newBtn:Destroy()
 			else
-				lastClick = currentClick
+				-- Reset click count if they don't click again fast (optional)
+				task.wait(0.5)
+				clicks = 0
 			end
 		end)
 	end
 	
-	-- Adding Accessories logic
+	-- Trigger on Enter key
 	accInput.FocusLost:Connect(function(enterPressed)
-		if enterPressed then
-			local text = accInput.Text
-			if text ~= "" then
-				-- Clone the template
-				local newItem = template:Clone()
-				newItem.Name = text -- Name the button the accessory name
-				newItem.Text = text
-				newItem.Visible = true
-				newItem.Parent = acsList
-	
-				-- Setup the delete logic for this new item
-				setupDeleteButton(newItem)
-	
-				-- Clear the input
-				accInput.Text = ""
-			end
-		end
+		if enterPressed then addAccessory() end
 	end)
 	
-	-- Setting Animal Type logic
-	animalInput.FocusLost:Connect(function(enterPressed)
-		if enterPressed then
-			if animalInput.Text ~= "" then
-				savedAnimalType = animalInput.Text
-				print("Animal type set to: " .. savedAnimalType)
-			end
-		end
-	end)
-	
-	-- CALC BUTTON LOGIC
+	-- Calculation Logic
 	calcBtn.MouseButton1Click:Connect(function()
-	
-		-- 1. Build the accessories table from the GUI List
 		local accessoryTable = {}
 	
-		-- Loop through everything in the ACS list
-		for _, child in pairs(acsList:GetChildren()) do
-			-- Make sure it is a button and NOT the hidden template
-			if child:IsA("TextButton") and child.Name ~= "Template" then
-				table.insert(accessoryTable, {
-					id = child.Text -- Gets the text from the button
-				})
-			end
+		-- Loop through our data and format it for the remote
+		for _, accName in ipairs(accessoryData) do
+			table.insert(accessoryTable, { id = accName })
 		end
 	
-		-- 2. Construct the Args
 		local args = {
 			{
 				id = "profile2",
@@ -420,21 +327,13 @@ local script = G2L["f"];
 					pattern = "black",
 					secondary = "black"
 				},
-				accessories = accessoryTable, -- The table we just built
-				itemId = savedAnimalType -- The animal type
+				accessories = accessoryTable,
+				itemId = animalInput.Text or "Animal"
 			}
 		}
 	
-		-- 3. Fire the Remote
-		-- NOTE: Ensure these folders exist in your game or this will error
-		local remote = ReplicatedStorage:WaitForChild("Modules")
-			:WaitForChild("Remotes")
-			:WaitForChild("RemoteEvent")
-			:WaitForChild("ApplyCharacterProfile")
-	
 		remote:FireServer(unpack(args))
-	
-		print("Sent profile for " .. savedAnimalType .. " with " .. #accessoryTable .. " accessories.")
+		print("Profile Applied!")
 	end)
 end;
 task.spawn(C_f);
