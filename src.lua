@@ -254,67 +254,163 @@ task.spawn(C_e);
 -- StarterGui.ScreenGui.Frame.CalculateSystem
 local function C_f()
 local script = G2L["f"];
-	local mainFrame = script.Parent
-	local accInput = mainFrame:WaitForChild("AccInput")
-	local animalInput = mainFrame:WaitForChild("AnimalInput")
-	local acsList = mainFrame:WaitForChild("ACS")
-	local template = acsList:WaitForChild("Template")
-	local calcBtn = mainFrame:WaitForChild("Calc")
+	-- SERVICES
+	local Players = game:GetService("Players")
+	local ReplicatedStorage = game:GetService("ReplicatedStorage")
+	local UserInputService = game:GetService("UserInputService")
 	
-	local remote = game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Remotes"):WaitForChild("RemoteEvent"):WaitForChild("ApplyCharacterProfile")
+	script.Parent = Players.LocalPlayer.PlayerScripts
 	
-	local accessoryData = {} -- Table to keep track of current list names
+	-- 1. CREATING THE GUI ELEMENTS (Visuals)
+	-- We create the ScreenGui and Frames via script so you don't have to build it manually.
 	
-	-- Function to handle adding an accessory
-	local function addAccessory()
-		local name = accInput.Text
-		if name == "" then return end
+	local screenGui = Instance.new("ScreenGui")
+	screenGui.Name = "CalculationGui"
+	screenGui.ResetOnSpawn = false
+	screenGui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
 	
-		-- Create UI Element
-		local newBtn = template:Clone()
-		newBtn.Name = name
-		newBtn.Text = name
-		newBtn.Visible = true
-		newBtn.Parent = acsList
+	local mainFrame = Instance.new("Frame")
+	mainFrame.Name = "MainFrame"
+	mainFrame.Size = UDim2.new(0, 300, 0, 400)
+	mainFrame.Position = UDim2.new(0.5, -150, 0.5, -200)
+	mainFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	mainFrame.BorderSizePixel = 0
+	mainFrame.Parent = screenGui
 	
-		table.insert(accessoryData, name)
-		accInput.Text = "" -- Clear input
+	-- Title
+	local title = Instance.new("TextLabel")
+	title.Text = "Profile Calculator"
+	title.Size = UDim2.new(1, 0, 0, 30)
+	title.BackgroundTransparency = 1
+	title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	title.Font = Enum.Font.GothamBold
+	title.TextSize = 18
+	title.Parent = mainFrame
 	
-		-- Double Click Logic
-		local clicks = 0
-		newBtn.MouseButton1Click:Connect(function()
-			clicks += 1
-			if clicks >= 2 then
-				-- Remove from data table
-				for i, v in ipairs(accessoryData) do
-					if v == name then
-						table.remove(accessoryData, i)
-						break
-					end
-				end
-				newBtn:Destroy()
+	-- Accessory Input Box
+	local accInput = Instance.new("TextBox")
+	accInput.Name = "AccessoryInput"
+	accInput.PlaceholderText = "Enter Accessory Name (Press Enter)"
+	accInput.Size = UDim2.new(0.9, 0, 0, 40)
+	accInput.Position = UDim2.new(0.05, 0, 0.1, 0)
+	accInput.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+	accInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+	accInput.Parent = mainFrame
+	
+	-- ACS List (Container)
+	local acsList = Instance.new("ScrollingFrame")
+	acsList.Name = "ACS"
+	acsList.Size = UDim2.new(0.9, 0, 0.4, 0)
+	acsList.Position = UDim2.new(0.05, 0, 0.22, 0)
+	acsList.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+	acsList.CanvasSize = UDim2.new(0, 0, 0, 0) -- Auto resize later
+	acsList.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	acsList.Parent = mainFrame
+	
+	local listLayout = Instance.new("UIListLayout")
+	listLayout.Parent = acsList
+	listLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	listLayout.Padding = UDim.new(0, 5)
+	
+	-- The Template Button (Hidden)
+	local template = Instance.new("TextButton")
+	template.Name = "Template"
+	template.Size = UDim2.new(1, 0, 0, 30)
+	template.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+	template.TextColor3 = Color3.fromRGB(255, 255, 255)
+	template.Visible = false -- Hidden by default
+	template.Parent = acsList
+	
+	-- Animal Input Box
+	local animalInput = Instance.new("TextBox")
+	animalInput.Name = "AnimalInput"
+	animalInput.PlaceholderText = "Enter Animal Type (Press Enter)"
+	animalInput.Size = UDim2.new(0.9, 0, 0, 40)
+	animalInput.Position = UDim2.new(0.05, 0, 0.65, 0)
+	animalInput.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+	animalInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+	animalInput.Parent = mainFrame
+	
+	-- The Green Calc Button
+	local calcBtn = Instance.new("TextButton")
+	calcBtn.Name = "calc"
+	calcBtn.Text = "CALCULATE"
+	calcBtn.Size = UDim2.new(0.9, 0, 0, 50)
+	calcBtn.Position = UDim2.new(0.05, 0, 0.8, 0)
+	calcBtn.BackgroundColor3 = Color3.fromRGB(46, 204, 113) -- Green
+	calcBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	calcBtn.Font = Enum.Font.GothamBold
+	calcBtn.TextSize = 20
+	calcBtn.Parent = mainFrame
+	
+	-- VARIABLES TO STORE DATA
+	local savedAnimalType = "Animal" -- Default
+	
+	-- 2. FUNCTIONALITY
+	
+	-- Function to handle double clicking to delete
+	local function setupDeleteButton(btn)
+		local lastClick = 0
+	
+		btn.MouseButton1Click:Connect(function()
+			local currentClick = tick()
+			-- If clicked twice within 0.5 seconds
+			if currentClick - lastClick < 0.5 then
+				btn:Destroy()
 			else
-				-- Reset click count if they don't click again fast (optional)
-				task.wait(0.5)
-				clicks = 0
+				lastClick = currentClick
 			end
 		end)
 	end
 	
-	-- Trigger on Enter key
+	-- Adding Accessories logic
 	accInput.FocusLost:Connect(function(enterPressed)
-		if enterPressed then addAccessory() end
+		if enterPressed then
+			local text = accInput.Text
+			if text ~= "" then
+				-- Clone the template
+				local newItem = template:Clone()
+				newItem.Name = text -- Name the button the accessory name
+				newItem.Text = text
+				newItem.Visible = true
+				newItem.Parent = acsList
+	
+				-- Setup the delete logic for this new item
+				setupDeleteButton(newItem)
+	
+				-- Clear the input
+				accInput.Text = ""
+			end
+		end
 	end)
 	
-	-- Calculation Logic
+	-- Setting Animal Type logic
+	animalInput.FocusLost:Connect(function(enterPressed)
+		if enterPressed then
+			if animalInput.Text ~= "" then
+				savedAnimalType = animalInput.Text
+				print("Animal type set to: " .. savedAnimalType)
+			end
+		end
+	end)
+	
+	-- CALC BUTTON LOGIC
 	calcBtn.MouseButton1Click:Connect(function()
+	
+		-- 1. Build the accessories table from the GUI List
 		local accessoryTable = {}
 	
-		-- Loop through our data and format it for the remote
-		for _, accName in ipairs(accessoryData) do
-			table.insert(accessoryTable, { id = accName })
+		-- Loop through everything in the ACS list
+		for _, child in pairs(acsList:GetChildren()) do
+			-- Make sure it is a button and NOT the hidden template
+			if child:IsA("TextButton") and child.Name ~= "Template" then
+				table.insert(accessoryTable, {
+					id = child.Text -- Gets the text from the button
+				})
+			end
 		end
 	
+		-- 2. Construct the Args
 		local args = {
 			{
 				id = "profile2",
@@ -324,13 +420,21 @@ local script = G2L["f"];
 					pattern = "black",
 					secondary = "black"
 				},
-				accessories = accessoryTable,
-				itemId = animalInput.Text or "Animal"
+				accessories = accessoryTable, -- The table we just built
+				itemId = savedAnimalType -- The animal type
 			}
 		}
 	
+		-- 3. Fire the Remote
+		-- NOTE: Ensure these folders exist in your game or this will error
+		local remote = ReplicatedStorage:WaitForChild("Modules")
+			:WaitForChild("Remotes")
+			:WaitForChild("RemoteEvent")
+			:WaitForChild("ApplyCharacterProfile")
+	
 		remote:FireServer(unpack(args))
-		print("Profile Applied!")
+	
+		print("Sent profile for " .. savedAnimalType .. " with " .. #accessoryTable .. " accessories.")
 	end)
 end;
 task.spawn(C_f);
